@@ -10,7 +10,7 @@ datos.num <- na.omit(datos.num) #No tiene NAs, por lo que no elimina nada
 summary(datos.num)
 
 #Pintar histogramas de las variables
-pdf("C:/Users/Usuario/Desktop/Master/Mineria-No_supervisado/Outliers/histogramas_waveform.pdf", width = 10, height = 8)
+pdf("histogramas_waveform.pdf", width = 10, height = 8)
 par(mfrow = c(2, 2))
 
 # Crear histogramas para las columnas seleccionadas
