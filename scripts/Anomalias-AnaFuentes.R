@@ -72,28 +72,28 @@ valores.outliers.IQR.norm <- columna.norm[son.outliers.IQR]
 datos.num.zscore.outliers.IQR <- datos.num.zscore[son.outliers.IQR, ]
 
 #3.1.5
-png("C:/Users/Usuario/Desktop/Master/Mineria-No_supervisado/Outliers/grafico1.png")
+png("grafico1.png")
 grafico1 <- plot_2_colores(columna.norm, claves.outliers.IQR, "att4", )
 dev.off()
-png("C:/Users/Usuario/Desktop/Master/Mineria-No_supervisado/Outliers/grafico2.png")
+png("grafico2.png")
 grafico2 <- plot_2_colores(columna.norm, claves.outliers.IQR.extremos, "att4", )
 dev.off()
 
 #3.1.6
 boxplot1 <- diag_caja_outliers_IQR(datos.num, indice.columna)
-png("C:/Users/Usuario/Desktop/Master/Mineria-No_supervisado/Outliers/boxplot1.png")
+png("boxplot1.png")
 boxplot1
 dev.off()
 boxplot2 <- diag_caja(datos.num, indice.columna, claves.outliers.IQR)
-png("C:/Users/Usuario/Desktop/Master/Mineria-No_supervisado/Outliers/boxplot2.png")
+png("boxplot2.png")
 boxplot2
 dev.off()
 boxplot2.extremos <- diag_caja(datos.num, indice.columna, claves.outliers.IQR.extremos)
-png("C:/Users/Usuario/Desktop/Master/Mineria-No_supervisado/Outliers/boxplot2_extremos.png")
+png("boxplot2_extremos.png")
 boxplot2.extremos
 dev.off()
 boxplot.junto <- diag_caja_juntos(datos.num, "Outliers en alguna columna", claves.outliers.IQR)
-png("C:/Users/Usuario/Desktop/Master/Mineria-No_supervisado/Outliers/boxplot_junto.png", width = 2000, height = 1200, res = 300)
+png("boxplot_junto.png", width = 2000, height = 1200, res = 300)
 boxplot.junto
 dev.off()
 
@@ -113,7 +113,7 @@ columna.sin.outlier <- datos.num.sin.outlier[,indice.columna]
 columna.sin.outlier
 ajusteNormal = fitdist(columna.sin.outlier , "norm")
 denscomp (ajusteNormal,  xlab = nombre.columna)
-png("C:/Users/Usuario/Desktop/Master/Mineria-No_supervisado/Outliers/Graf_QQ.png")
+png("Graf_QQ.png")
 ggqqplot(columna.sin.outlier) 
 dev.off()
 shapiro.test(columna.sin.outlier)
@@ -198,7 +198,7 @@ par(mfrow = c(2, 3))
 
 #3.3.2
 # Usar lapply para recorrer las columnas
-pdf("C:/Users/Usuario/Desktop/Master/Mineria-No_supervisado/Outliers/Grubbs.pdf", width = 10, height = 8)
+pdf("Grubbs.pdf", width = 10, height = 8)
 par(mfrow = c(2, 2))
 sapply(seq_along(datos.num.sin.outlier), function(i) {
   columna <- datos.num.sin.outlier[, i]
@@ -231,7 +231,7 @@ resultados.grubbs
 #4
 #4.1
 #4.1.1
-png("C:/Users/Usuario/Desktop/Master/Mineria-No_supervisado/Outliers/test-MVN.png")
+png("test-MVN.png")
 cqplot(datos.num.var.norm , method = "classical")
 dev.off()
 
@@ -285,7 +285,7 @@ biplot.outliers.IQR = biplot_2_colores(datos.num,
                                        claves.outliers.IQR.en.alguna.columna, 
                                        titulo.grupo.a.mostrar = "Outliers IQR",
                                        titulo ="Biplot Outliers IQR")
-png("C:/Users/Usuario/Desktop/Master/Mineria-No_supervisado/Outliers/biplot-out-IQR.png")
+png("biplot-out-IQR.png")
 biplot.outliers.IQR
 dev.off()
 
@@ -294,11 +294,11 @@ num.vecinos.lof = 5
 lof.scores = LOF(dataset = datos.num.zscore, k = num.vecinos.lof)
 indices.ordenados <- order(lof.scores,decreasing=TRUE)
 lof.scores.ordenados <- lof.scores[indices.ordenados]
-png("C:/Users/Usuario/Desktop/Master/Mineria-No_supervisado/Outliers/lof_scores_ordenados.png")
+png("lof_scores_ordenados.png")
 plot(lof.scores.ordenados, col = "black")
 dev.off()
 
-png("C:/Users/Usuario/Desktop/Master/Mineria-No_supervisado/Outliers/prube.png")
+png("prube.png")
 plot(lof.scores.ordenados, col = "black", xlim = c(0,50))
 dev.off()
 
@@ -310,12 +310,12 @@ clave.max.outlier.lof = claves.outliers.lof[1]
 colores = rep("black", times = nrow(datos.num.zscore))
 colores[clave.max.outlier.lof] = "red"
 datos.num.zscore1 <- datos.num.zscore[,c(13,16,17,18,19,20,21)]
-png("C:/Users/Usuario/Desktop/Master/Mineria-No_supervisado/Outliers/par22.png")
+png("par22.png")
 pairs(datos.num.zscore1, pch = 19,  cex = 0.5, col = colores, lower.panel = NULL)
 dev.off()
 
 biplot.max.outlier.lof = biplot_2_colores(datos.num.zscore, clave.max.outlier.lof, titulo = "Mayor outlier LOF")
-png("C:/Users/Usuario/Desktop/Master/Mineria-No_supervisado/Outliers/biplot-max-out-lof.png")
+png("biplot-max-out-lof.png")
 biplot.max.outlier.lof
 dev.off()
 
@@ -354,7 +354,7 @@ outliers <- top_clustering_outliers(datos.num.zscore,
                                     asignaciones.clustering.kmeans, 
                                     centroides.normalizados, 
                                     num.outliers = nrow(datos.num.zscore))
-png("C:/Users/Usuario/Desktop/Master/Mineria-No_supervisado/Outliers/kmeans2.png")
+png("kmeans2.png")
 plot(outliers$distancias, col = "black", xlim = c(3200,3500))
 dev.off()
 num.outliers <- 4
@@ -366,13 +366,13 @@ nombres.outliers.kmeans <- rownames(datos.num)[claves.outliers.kmeans]
 claves.outliers.kmeans
 nombres.outliers.kmeans
 outliers.kmeans$distancias
-png("C:/Users/Usuario/Desktop/Master/Mineria-No_supervisado/Outliers/biplot-kmeans.png")
+png("biplot-kmeans.png")
 biplot_outliers_clustering(datos.num, 
                            titulo = "Outliers k-means",
                            asignaciones.clustering = asignaciones.clustering.kmeans,
                            claves.outliers = claves.outliers.kmeans)
 dev.off()
-png("C:/Users/Usuario/Desktop/Master/Mineria-No_supervisado/Outliers/boxplot-kmeans.png")
+png("boxplot-kmeans.png")
 diag_caja_juntos(datos.num, "Outliers k-means", claves.outliers.kmeans)
 dev.off()
 
@@ -395,7 +395,7 @@ nombres.outliers.pam <- rownames(datos.num)[claves.outliers.pam]
 claves.outliers.pam
 nombres.outliers.pam
 outliers.pam$distancias
-png("C:/Users/Usuario/Desktop/Master/Mineria-No_supervisado/Outliers/biplot-medoides.png")
+png("biplot-medoides.png")
 biplot_outliers_clustering(datos.num, 
                            titulo = "Outliers pam",
                            asignaciones.clustering = asignaciones.clustering.pam,
@@ -409,7 +409,7 @@ ejemplo <- biplot_2_colores(datos.num, claves.outliers.lof.no.IQR,
                             titulo = "Outliers LOF (excluidos los que son IQR")
 datos.num.zscore[claves.outliers.lof.no.IQR, ]
 
-png("C:/Users/Usuario/Desktop/Master/Mineria-No_supervisado/Outliers/biplot-ejemplo.png")
+png("biplot-ejemplo.png")
 ejemplo
 dev.off()
 
